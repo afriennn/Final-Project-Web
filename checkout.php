@@ -48,15 +48,14 @@
 								<li><a href="homepage.php">Home</a></li>
 								<li><a href="shop.php">Menu</a>
 									<ul class="sub-menu">
-										<li><a href="espressohot.php">Espresso Hot</a></li>
-										<li><a href="espressoice.php">Espresso Ice</a></li>
-										<li><a href="frappe.php">Frappe</a></li>
-										<li><a href="noncoffee.php">Non-coffee</a></li>
-										<li><a href="signature.php">Signature</a></li>
+										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
+										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
+										<li><a href="kategori.php?tag=frappes">Frappe</a></li>
+										<li><a href="kategori.php?tag=non-coffee">Non-coffee</a></li>
+										<li><a href="kategori.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
-								<li><a href="contact.php">Contact</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
