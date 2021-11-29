@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2021 pada 09.13
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 7.3.30
+-- Waktu pembuatan: 29 Nov 2021 pada 19.55
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -80,37 +80,37 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_menu`, `nama`, `harga`, `kategori`, `gambar`) VALUES
-(1, 'americano', 15000, 'espresso hot', ''),
-(2, 'cappuccino', 20000, 'espresso hot', ''),
-(3, 'caramel macchiato', 28000, 'espresso hot', ''),
-(4, 'cortado', 220000, 'espresso hot', ''),
-(5, 'espresso macchiato', 18000, 'espresso hot', ''),
-(6, 'espresso', 13000, 'espresso hot', ''),
-(7, 'flat white', 20000, 'espresso hot', ''),
-(8, 'latte', 20000, 'espresso hot', ''),
-(9, 'mocha dark & white', 22000, 'espresso hot', ''),
-(10, 'spanish latte', 21000, 'espresso hot', ''),
-(11, 'americano', 15000, 'espresso ice', ''),
-(12, 'caramel macchiato', 30000, 'espresso ice', ''),
-(13, 'latte', 22000, 'espresso ice', ''),
-(14, 'mocha dark & white', 25000, 'espresso ice', ''),
-(15, 'spanish latte', 23000, 'espresso ice', ''),
-(16, 'the melting pot', 28000, 'signature', ''),
-(17, 'queens', 25000, 'signature', ''),
-(18, 'manhattan special', 30000, 'signature', ''),
-(19, 'greates of all time', 27000, 'signature', ''),
-(20, 'caramel frappe', 25000, 'frappes', ''),
-(21, 'chocolate frappe', 26000, 'frappes', ''),
-(22, 'coffee frappe', 25000, 'frappes', ''),
-(23, 'mocha frappe', 26000, 'frappes', ''),
-(24, 'toffee frappe', 25000, 'frappes', ''),
-(25, 'vanilla frappe', 25000, 'frappes', ''),
-(26, 'hot nutella', 27000, 'not coffee', ''),
-(27, 'orange juice', 25000, 'not coffee', ''),
-(28, 'shaken iced tea', 24000, 'not coffee', ''),
-(29, 'smoothie berry blast', 25000, 'not coffee', ''),
-(30, 'smoothie paradise passion', 27000, 'not coffee', ''),
-(31, 'stash tea', 22000, 'not coffee', '');
+(1, 'Americano', 15000, 'espresso hot', ''),
+(2, 'Cappuccino', 20000, 'espresso hot', ''),
+(3, 'Caramel Macchiato', 28000, 'espresso hot', ''),
+(4, 'Cortado', 22000, 'espresso hot', ''),
+(5, 'Espresso Macchiato', 18000, 'espresso hot', ''),
+(6, 'Espresso', 13000, 'espresso hot', ''),
+(7, 'Flat White', 20000, 'espresso hot', ''),
+(8, 'Latte', 20000, 'espresso hot', ''),
+(9, 'Mocha Dark & White', 22000, 'espresso hot', ''),
+(10, 'Spanish Latte', 21000, 'espresso hot', ''),
+(11, 'Ice Americano', 15000, 'espresso ice', ''),
+(12, 'Caramel Macchiato', 30000, 'espresso ice', ''),
+(13, 'Latte', 22000, 'espresso ice', ''),
+(14, 'Mocha Dark & White', 25000, 'espresso ice', ''),
+(15, 'Spanish Latte', 23000, 'espresso ice', ''),
+(16, 'The Melting Pot', 28000, 'signature', ''),
+(17, 'Queens', 25000, 'signature', ''),
+(18, 'Manhattan Special', 30000, 'signature', ''),
+(19, 'Greates of All Time', 27000, 'signature', ''),
+(20, 'Caramel Frappe', 25000, 'frappes', ''),
+(21, 'Chocolate Frappe', 26000, 'frappes', ''),
+(22, 'Coffee Frappe', 25000, 'frappes', ''),
+(23, 'Mocha Frappe', 26000, 'frappes', ''),
+(24, 'Toffee Frappe', 25000, 'frappes', ''),
+(25, 'Vanilla Frappe', 25000, 'frappes', ''),
+(26, 'Hot Nutella', 27000, 'non-coffee', ''),
+(27, 'Orange Juice', 25000, 'non-coffee', ''),
+(28, 'Shaken Iced Tea', 24000, 'non-coffee', ''),
+(29, 'Smoothie Berry Blast', 25000, 'non-coffee', ''),
+(30, 'Smoothie Paradise Passion', 27000, 'non-coffee', ''),
+(31, 'Stash Tea', 22000, 'non-coffee', '');
 
 -- --------------------------------------------------------
 
@@ -123,6 +123,14 @@ CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
   `password` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`) VALUES
+(1, 'afrien', 'afrien123'),
+(2, 'novia', '$2y$10$Gs5/KBgBUrYIY');
 
 --
 -- Indexes for dumped tables
@@ -160,13 +168,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
