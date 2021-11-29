@@ -6,8 +6,10 @@
 		if(!isset($_SESSION['username'])){
 			header("Location: index.php");
 		}
-	$kategori = "espresso hot"
-	$menu = query("SELECT * FROM menu WHERE kategori=$kategori");
+	$kategori = "espresso hot";
+	$sql = "SELECT * FROM menu WHERE kategori='$kategori'";
+
+	$query = $konek->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -126,20 +128,20 @@
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row product-lists">
+				<?php $i = 1;?>
+				<?php foreach ($query as $id) : ?>
 				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<?php $i = 1;?>
-					<?php foreach ($menu as $id) : ?>
 					<div class="single-product-item">
 						<div class="product-image">
 							<img src="assets/img/products/Espresso Hot/Americano.jpg" alt="">
 						</div>
 						<h3><?= $id["nama"]; ?></h3>
-						<p class="product-price"><?= $id["harga"]; ?></p>
+						<p class="product-price">Rp<?= $id["harga"]; ?></p>
 						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
-					<?php $i++; ?>
-					<?php endforeach; ?>
 				</div>
+				<?php $i++; ?>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
