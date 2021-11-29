@@ -59,11 +59,11 @@
 								<li><a href="homepage.php">Home</a></li>
 								<li class="current-list-item"><a href="shop.php">Menu</a>
 									<ul class="sub-menu">
-										<li><a href="espressohot.php">Espresso Hot</a></li>
-										<li><a href="espressoice.php">Espresso Ice</a></li>
-										<li><a href="frappe.php">Frappe</a></li>
-										<li><a href="noncoffee.php">Non-coffee</a></li>
-										<li><a href="signature.php">Signature</a></li>
+										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
+										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
+										<li><a href="kategori.php?tag=frappes">Frappe</a></li>
+										<li><a href="kategori.php?tag=non-coffee">Non-coffee</a></li>
+										<li><a href="kategori.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
@@ -100,22 +100,7 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li data-filter=".strawberry">Espresso Hot</li>
-                            <li data-filter=".berry">Espresso Ice</li>
-                            <li data-filter=".lemon">Frappe</li>
-							<li data-filter=".lemon">Non-coffee</li>
-							<li data-filter=".lemon">Signature</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-			<div class="row">
+			<div class="row text-center" style="margin-bottom: 30px;">
 				<h2 class="best-seller">Our Best Seller</h2>
 			</div>
 
@@ -125,7 +110,7 @@
 						<div class="product-image">
 							<img src="assets/img/products/Frappe/Chocolate.jpg" alt="">
 						</div>
-						<h3>Chocolate Frappe</h3>
+						<h3><?php echo $nama; ?></h3>
 						<p class="product-price">Rp26.000</p>
 						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
