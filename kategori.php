@@ -115,7 +115,7 @@
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
 						<div class="product-image">
-							<img src="assets/img/products/Espresso Hot/Americano.jpg" alt="">
+							<img src="menupict/<?= $id["gambar"]; ?>" alt="">
 						</div>
 						<h3><?= $id["nama"]; ?></h3>
 						<p class="product-price">Rp<?= $id["harga"]; ?></p>
