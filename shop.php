@@ -5,6 +5,9 @@
 		if(!isset($_SESSION['username'])){
 			header("Location: index.php");
 		}
+
+		$sql = "SELECT * FROM best_seller";
+		$query = $konek->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -105,66 +108,22 @@
 			</div>
 
 			<div class="row product-lists">
+				<?php $i = 1; ?>
+				<?php foreach ($query as $id) : ?>
 				<div class="col-lg-4 col-md-6 text-center strawberry">
 					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Frappe/Chocolate.jpg" alt="">
-						</div>
-						<h3><?php echo $nama; ?></h3>
-						<p class="product-price">Rp26.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<form action="" method="POST">
+							<div class="product-image">
+								<img src="menupictbestseller/<?= $id["gambar"]; ?>" alt="">
+							</div>
+							<h3><?= $id["nama"]; ?></h3>
+							<p class="product-price">Rp<?= $id["harga"]; ?></p>
+							<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						</form>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 text-center berry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Signature/The-Melting-Pot.jpg" alt="">
-						</div>
-						<h3>The Melting Pot</h3>
-						<p class="product-price">Rp28.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center lemon">
-					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Not Coffee/Nuetella.jpg" alt="">
-						</div>
-						<h3>Hot Nuetella</h3>
-						<p class="product-price">Rp27.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Espresso Ice/Caramel-Macchiato.jpg" alt="">
-						</div>
-						<h3>Iced Caramel Macchiato</h3>
-						<p class="product-price">Rp30.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Not Coffee/Smoothie-Paradise-Passion.jpg" alt="">
-						</div>
-						<h3>Smoothie Paradise Passion</h3>
-						<p class="product-price">Rp27.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<div class="product-image">
-							<img src="assets/img/products/Signature/Queens.jpg" alt="">
-						</div>
-						<h3>Queens</h3>
-						<p class="product-price">Rp25.000</p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				<?php $i++; ?>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
