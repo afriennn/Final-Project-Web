@@ -8,12 +8,6 @@
 
 	require 'koneksi.php';
 
-// ambil data dari url
-	$id_menu = $_GET["id_menu"];
-
-// query data mhs berdasarkan id_menu
-	$menu = query("SELECT * FROM menu WHERE id_menu = '$id_menu'") [0];
-	
 // mengecek apakah data berhasil diubah
 	if( isset($_POST["submit"]) ) {
 		if( ubah($_POST) > 0){
@@ -27,10 +21,119 @@
 			echo "
 				<script>
 					alert('Data Gagal Diubah!');
-					document.location.href = 'shop_admin.php';
 				</script>
 			";
+			var_dump($_POST);
 		}
+	}
+
+// ambil data dari url
+	$id_menu = $_GET["id_menu"];
+
+// fungsi untuk mengambil isi database dan memasukkan ke dalam variable
+	function query($query){
+		global $konek;
+
+		$result = mysqli_query($konek, $query);
+
+	// membuat array rows untuk menampung isi database
+		$rows = []; 
+
+	// memasukkan isi database satu-persatu ke dalam array rows
+		while($row = mysqli_fetch_assoc($result)){
+			$rows[] = $row; 
+		}
+		return $rows;
+	}
+
+// query data mhs berdasarkan id_menu
+	$menu = query("SELECT * FROM menu WHERE id_menu = '$id_menu'") [0];
+
+// fungsi upload gambar
+	function upload() {
+		global $nama;
+
+		$namaFile = $_FILES['gambar']['name'];
+		$ukuranFile = $_FILES['gambar']['size'];
+		$error = $_FILES['gambar']['error'];
+		$tmpName = $_FILES['gambar']['tmp_name'];
+
+	// cek apakah ada gambar yang diupload
+		if( $error === 4 ) {
+			echo "
+				<script>
+					alert('Gambar Belum Diinputkan!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+
+	// cek apakah yang diupload adalah gambar
+		$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+		$ekstensiGambar = explode ('.', $namaFile);
+		$ekstensiGambar = strtolower(end($ekstensiGambar) );
+
+	// adakah sebuah string dalam sebuah array
+		if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+			echo "
+				<script>
+					alert('Yang Anda Upload Bukan Gambar!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+
+	// jika ukuran terlalu besar
+		if( $ukuranFile > 10000000) {
+			echo "
+				<script>
+					alert('Ukuran Gambar Terlalu Besar!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+
+	// generate nama gambar baru
+		$namaFileBaru = $nama;
+		$namaFileBaru .= '.';
+		$namaFileBaru .= $ekstensiGambar;
+
+	// lolos pengecekan, gambar siap diupload
+		move_uploaded_file($tmpName, 'menupict/' . $namaFileBaru);
+		return $namaFileBaru;
+	} 
+
+// fungsi ubah
+	function ubah($data){
+		global $konek, $id_menu;
+
+		$id_menu = $data["id_menu"];
+		$nama = htmlspecialchars($data["nama"]);
+		$harga = htmlspecialchars($data["harga"]);
+		$kategori = htmlspecialchars($data["kategori"]);
+		$gambarLama = htmlspecialchars($data["gambarLama"]);
+
+	// cek apakah user memilih gambar baru atau tidak
+		if($_FILES['gambar']['error'] === 4){
+			$gambar = $gambarLama;
+		}else{
+			$gambar = upload();
+		}
+
+	// query update menu
+		$query = "UPDATE menu SET
+			 nama = '$nama',
+			 harga = '$harga',
+			 kategori = '$kategori',
+			 gambar = '$gambar'
+			WHERE id_menu = '$id_menu'
+		";
+		mysqli_query($konek, $query);
+
+		return mysqli_affected_rows($konek);
 	}
 ?>
 
@@ -141,7 +244,7 @@
 			</li>
 			<li>
 				<label for="gambar">Gambar :</label><br><br>
-				<img src="img/<?= $menu['gambar']; ?>" width="50"><br><br>
+				<img src="menupict/<?= $menu['gambar']; ?>" width="250"><br><br>
 				<input type="file" name="gambar" id="gambar">
 			</li>
 			<li>

@@ -119,7 +119,7 @@
 						</div>
 						<h3><?= $id["nama"]; ?></h3>
 						<p class="product-price">Rp<?= $id["harga"]; ?></p>
-						<a href="update.php" class="cart-btn">Update | </a>
+						<a href="update.php" class="cart-btn">Update</a>
 						<a href="delete.php" class="cart-btn">Delete</a>
 					</div>
 				</div>
