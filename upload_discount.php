@@ -1,13 +1,43 @@
-<?php
-	include 'koneksi.php';
+<?php 
 	session_start();
-	// semisal belum login, langsung masuk ke index.php
-		if(!isset($_SESSION['username'])){
-			header("Location: index.php");
-		}
 
-		$sql = "SELECT * FROM discount";
-		$query = $konek->query($sql);
+	if( !isset($_SESSION['username']) ) {
+		header("Location: index.php");
+		exit;
+	}
+
+	require 'koneksi.php';
+
+	// cek apakah tombol tambah sudah ditekan atau belum
+	if( isset($_POST["tambah"]) ) {
+		$discount = htmlspecialchars($_POST["discount"]);
+		$potongan = htmlspecialchars($_POST["potongan"]);
+		$min_order = htmlspecialchars($_POST["min_order"]);
+
+	// query insert data
+		$query = "INSERT INTO discount VALUES
+			('$discount', '$potongan', '$min_order')
+		";
+		mysqli_query($konek, $query);		
+
+	// cek keberhasilan input data
+		if( mysqli_affected_rows($konek) > 0){
+			echo "
+				<script>
+					alert('Data Berhasil Ditambahkan!');
+					document.location.href = 'discount_admin.php';
+				</script>
+			";
+		} else {
+			echo "
+				<script>
+					alert('Data Gagal Ditambahkan!');
+					
+				</script>
+			";
+		}
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +48,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- title -->
-	<title>Discount</title>
+	<title>Menu</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="assets/img/icon.png">
@@ -41,11 +71,10 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
-
 </head>
 <body>
 <!-- header -->
-<div class="top-header-area" id="sticker">
+   <div class="top-header-area" id="sticker">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 text-center">
@@ -56,10 +85,11 @@
 								<img src="assets/img/kawfee.png" alt="">
 							</a>
 						</div>
+						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
 								<li><a href="homepage_admin.php">Home</a></li>
-								<li ><a href="shop_admin.php">Menu</a>
+								<li><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
 										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
 										<li><a href="kategori_admin.php?tag=espresso ice">Espresso Ice</a></li>
@@ -69,7 +99,7 @@
 									</ul>
 								</li>
 								<li class="current-list-item"><a href="discount_admin.php">Discount</a></li>
-                                <li><a href="upload_discount.php">Tambahkan Data</a></li>
+								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
@@ -91,7 +121,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
-						<h1>Discount</h1>
+						<h1>Menu</h1>
 					</div>
 				</div>
 			</div>
@@ -99,46 +129,39 @@
 	</div>
 	<!-- end menu-section -->
 
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
+	<form action="" method="post" enctype="multipart/form-data">
+		<ul>
+			<li>
+				<label for="discount">Nama Voucher Discount :</label>
+				<input type="text" name="discount" id="discount" required>
+			</li>
+			<li>
+				<label for="potongan">Potongan :</label>
+				<input type="text" name="potongan" id="potongan" required>
+			</li>
+			<li>
+				<label for="min_order">Minimal Order :</label>
+				<input type="text" name="min_order" id="min_order" required>
+			</li>
+			<li>
+				<button type="submit" name="tambah">Tambahkan!</button>
+			</li>
+		</ul>
+	</form>
+
+	<a href="index.php">Batal</a>
+
+<!-- copyright -->
+	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<h2 class="best-seller" style="margin-bottom: 30px">Apply Voucher and Get Your Drinks Now!</h2>
-			</div>
-
-			<div class="row product-lists">
-				<?php $i = 1; ?>
-				<?php foreach ($query as $id) : ?>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<form action="" method="POST">
-							<div class="product-image">
-							</div>
-							<h3><?= $id["discount"]; ?></h3>
-							<h6>Potongan :</h6>
-							<p class="product-price">Rp<?= $id["potongan"]; ?></p>
-							<h6>Minimal Order :</h6>
-							<p class="product-price">Rp<?= $id["min_order"]; ?></p>
-						</form>
-					</div>
+				<div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2021 - <a href="homepage_admin.php">Final Project - Web</a>,  All Rights Reserved.</p>
 				</div>
-				<?php $i++; ?>
-				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
-	<!-- end products -->
+<!-- end copyright -->
 
-	<!-- copyright -->
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-12">
-						<p>Copyrights &copy; 2021 - <a href="homepage.php">Final Project - Web</a>,  All Rights Reserved.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	<!-- end copyright -->
 </body>
 </html>
