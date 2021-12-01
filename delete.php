@@ -1,8 +1,8 @@
 <?php 
 	session_start();
 
-	if( !isset($_SESSION['login']) ) {
-		header("Location: login.php");
+	if( !isset($_SESSION['username']) ) {
+		header("Location: index.php");
 		exit;
 	}
 	
@@ -15,17 +15,17 @@
 	if( mysqli_affected_rows($konek) > 0 ) {
 		echo "
 			<script>
-				alert('data berhasil dihapus!');
+				alert('Data Berhasil Dihapus!');
+				document.location.href = 'shop_admin.php';
 			</script>
 		";
-		header("Location: shop.php");
 	} else {
 		echo "
 			<script>
-				alert('data gagal dihapus!');
+				alert('Data Gagal Dihapus!');
+				document.location.href = 'shop_admin.php';
 			</script>
 		";
-		header("Location: shop.php");
 	}
 
 ?>

@@ -5,7 +5,7 @@
     $username = $_POST ['username'];
     $password = $_POST ['password'];
 
-    $query =mysqli_query($konek, "SELECT * FROM admin WHERE username='$username' && password='$password'")
+    $query = mysqli_query($konek, "SELECT * FROM admin WHERE username='$username' && password='$password'")
     or die(mysqli_error($konek));
 
     $cek = mysqli_num_rows($query);

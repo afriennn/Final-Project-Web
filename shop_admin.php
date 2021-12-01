@@ -70,13 +70,12 @@
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
+								<li><a href="add.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
-										<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
-								<li><a href="add.php">Tambahkan Data</a></li>
 							</ul>
 						</nav>
 						<!-- menu end -->
@@ -120,7 +119,7 @@
 							<h3><?= $id["nama"]; ?></h3>
 							<p class="product-price">Rp<?= $id["harga"]; ?></p>
 							<a href="update.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn">Update</a>
-							<a href="delete.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a> 
+							<a href="delete.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a>
 						</form>
 					</div>
 				</div>
