@@ -14,11 +14,16 @@
 		$harga = htmlspecialchars($_POST["harga"]);
 		$kategori = htmlspecialchars($_POST["kategori"]);
 
+		var_dump($_POST);
+		var_dump($nama);
+		var_dump($harga);
+		var_dump($kategori);
+
 	// query insert data
 		$query = "INSERT INTO menu VALUES
-			('', '$nama', '$harga', '$kategori')
+			('', '$nama', '$harga', '$kategori', '')
 		";
-		mysqli_query($konek, $query);		
+		mysqli_query($konek, $query);
 
 	// cek keberhasilan input data
 		if( mysqli_affected_rows($konek) > 0){

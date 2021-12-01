@@ -10,7 +10,7 @@
     if(isset($_GET['tag'])){
         $tag = $_GET['tag'];
         $sql = "SELECT * FROM menu WHERE kategori='$tag'";
-    } else{
+    }else{
         $sql = "SELECT * FROM menu";
     }
 
