@@ -10,7 +10,7 @@
 
 	$id_menu = $_GET["id_menu"];
 
-	mysqli_query($konek, "DELETE FROM menu WHERE id_menu = '$id_menu'");
+	mysqli_query($konek, "DELETE FROM best_seller WHERE id_menu = '$id_menu'");
 
 	if( mysqli_affected_rows($konek) > 0 ) {
 		echo "
