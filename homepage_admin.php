@@ -55,7 +55,7 @@
 						<nav class="main-menu">
 							<ul>
 								<li class="current-list-item"><a href="homepage_admin.php">Home</a></li>
-								<li ><a href="shop.php">Menu</a>
+								<li ><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
 										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
 										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
@@ -90,7 +90,7 @@
 						<div class="hero-text-tablecell">
 							<h1>All you need is our delicious coffee</h1>
 							<div class="hero-btns">
-								<a href="shop.php" class="bordered-btn">Go to shop</a>
+								<a href="shop_admin.php" class="bordered-btn">Go to shop</a>
 							</div>
 						</div>
 					</div>

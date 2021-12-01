@@ -52,14 +52,14 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="homepage.php">
+							<a href="homepage_admin.php">
 								<img src="assets/img/kawfee.png" alt="">
 							</a>
 						</div>
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li><a href="homepage.php">Home</a></li>
+								<li><a href="homepage_admin.php">Home</a></li>
 								<li class="current-list-item"><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
 										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
@@ -135,7 +135,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-12">
-						<p>Copyrights &copy; 2021 - <a href="homepage.php">Final Project - Web</a>,  All Rights Reserved.</p>
+						<p>Copyrights &copy; 2021 - <a href="homepage_admin.php">Final Project - Web</a>,  All Rights Reserved.</p>
 					</div>
 				</div>
 			</div>
