@@ -52,27 +52,27 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="homepage.php">
+							<a href="homepage_admin.php">
 								<img src="assets/img/kawfee.png" alt="">
 							</a>
 						</div>
 						<nav class="main-menu">
 							<ul>
-								<li><a href="homepage.php">Home</a></li>
-								<li ><a href="shop.php">Menu</a>
+								<li><a href="homepage_admin.php">Home</a></li>
+								<li ><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
-										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
-										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
-										<li><a href="kategori.php?tag=frappes">Frappe</a></li>
-										<li><a href="kategori.php?tag=non-coffee">Non-coffee</a></li>
-										<li><a href="kategori.php?tag=signature">Signature</a></li>
+										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
+										<li><a href="kategori_admin.php?tag=espresso ice">Espresso Ice</a></li>
+										<li><a href="kategori_admin.php?tag=frappes">Frappe</a></li>
+										<li><a href="kategori_admin.php?tag=non-coffee">Non-coffee</a></li>
+										<li><a href="kategori_admin.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
-								<li class="current-list-item"><a href="discount.php">Discount</a></li>
+								<li class="current-list-item"><a href="discount_admin.php">Discount</a></li>
+                                <li><a href="upload_discount.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
-										<a class="shopping-cart" href="cart.php"><i class="fas fa-shopping-cart"></i></a>
 									</div>
 								</li>
 							</ul>
