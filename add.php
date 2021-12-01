@@ -92,7 +92,7 @@
 		$namaFileBaru .= $ekstensiGambar;
 
 	// lolos pengecekan, gambar siap diupload
-		move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+		move_uploaded_file($tmpName, 'menupict/' . $namaFileBaru);
 		return $namaFileBaru;
 	} 
 ?>
