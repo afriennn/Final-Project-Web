@@ -13,15 +13,14 @@
 		$nama = htmlspecialchars($_POST["nama"]);
 		$harga = htmlspecialchars($_POST["harga"]);
 		$kategori = htmlspecialchars($_POST["kategori"]);
-
-		var_dump($_POST);
-		var_dump($nama);
-		var_dump($harga);
-		var_dump($kategori);
+		$gambar = upload();
+		if( !$gambar ) {
+			return false;
+		}
 
 	// query insert data
 		$query = "INSERT INTO menu VALUES
-			('', '$nama', '$harga', '$kategori', '')
+			('', '$nama', '$harga', '$kategori', '$gambar')
 		";
 		mysqli_query($konek, $query);
 
@@ -37,12 +36,65 @@
 			echo "
 				<script>
 					alert('Data Gagal Ditambahkan!');
-					
+					document.location.href = 'add.php';
 				</script>
 			";
 		}
 	}
 
+// fungsi upload gambar
+	function upload() {
+		$namaFile = $_FILES['gambar']['name'];
+		$ukuranFile = $_FILES['gambar']['size'];
+		$error = $_FILES['gambar']['error'];
+		$tmpName = $_FILES['gambar']['tmp_name'];
+
+	// cek apakah ada gambar yang diupload
+		if( $error === 4 ) {
+			echo "
+				<script>
+					alert('Gambar Belum Diinputkan!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+
+	// cek apakah yang diupload adalah gambar
+		$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+		$ekstensiGambar = explode ('.', $namaFile);
+		$ekstensiGambar = strtolower(end($ekstensiGambar) );
+
+	// adakah sebuah string dalam sebuah array
+		if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+			echo "
+				<script>
+					alert('Yang Anda Upload Bukan Gambar!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+	// jika ukuran terlalu besar
+		if( $ukuranFile > 10000000) {
+			echo "
+				<script>
+					alert('Ukuran Gambar Terlalu Besar!');
+					document.location.href = 'add.php';
+				</script>
+			";
+			return false;
+		}
+
+	// generate nama gambar baru
+		$namaFileBaru = uniqid();
+		$namaFileBaru .= '.';
+		$namaFileBaru .= $ekstensiGambar;
+
+	// lolos pengecekan, gambar siap diupload
+		move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+		return $namaFileBaru;
+	} 
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +204,10 @@
 					<option name="kategori">Signature</option>
 					<option name="kategori">Frappes</option>
 				</select>
+			</li>
+			<li>
+				<label for="gambar">Gambar :</label>
+				<input type="file" name="gambar" id="gambar" required>
 			</li>
 			<li>
 				<button type="submit" name="tambah">Tambahkan!</button>
