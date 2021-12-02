@@ -118,8 +118,8 @@
 						</div>
 						<h3><?= $id["nama"]; ?></h3>
 						<p class="product-price">Rp<?= $id["harga"]; ?></p>
-						<a href="update.php" class="cart-btn">Update</a>
-						<a href="delete.php" class="cart-btn">Delete</a>
+						<a href="update.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn">Update</a>
+						<a href="delete.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a>
 					</div>
 				</div>
 				<?php $i++; ?>
