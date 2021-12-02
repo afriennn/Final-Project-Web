@@ -8,7 +8,7 @@
 
 	require 'koneksi.php';
 
-// cek apakah tombol tambah sudah ditekan atau belum
+	// cek apakah tombol tambah sudah ditekan atau belum
 	if( isset($_POST["tambah"]) ) {
 		$nama = htmlspecialchars($_POST["nama"]);
 		$harga = htmlspecialchars($_POST["harga"]);
@@ -95,6 +95,7 @@
 		move_uploaded_file($tmpName, 'menupict/' . $namaFileBaru);
 		return $namaFileBaru;
 	} 
+
 ?>
 
 <!DOCTYPE html>
@@ -128,6 +129,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <!-- header -->
@@ -156,7 +158,7 @@
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
-								<li><a href="add.php">Tambahkan Data</a></li>
+								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
@@ -186,36 +188,35 @@
 	</div>
 	<!-- end menu-section -->
 
-	<form action="" method="post" enctype="multipart/form-data">
-		<ul>
-			<li>
-				<label for="nama">Nama :</label>
-				<input type="text" name="nama" id="nama" required>
-			</li>
-			<li>
-				<label for="harga">Harga :</label>
-				<input type="text" name="harga" id="harga" required>
-			</li>
-			<li>
-				<label for="kategori">Kategori :</label>
-				<select name="kategori" id="kategori" required>
-					<option name="kategori">Espresso Hot</option>
-					<option name="kategori">Espresso Ice</option>
-					<option name="kategori">Signature</option>
-					<option name="kategori">Frappes</option>
-				</select>
-			</li>
-			<li>
-				<label for="gambar">Gambar :</label>
-				<input type="file" name="gambar" id="gambar" required>
-			</li>
-			<li>
-				<button type="submit" name="tambah">Tambahkan!</button>
-			</li>
-		</ul>
-	</form>
-
-	<a href="index.php">Batal</a>
+	<!-- upload new products  -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="coupon-section">
+				<h2 style="font-weight: bold; margin-bottom: 30px;">Input Menu Baru</h2>
+					<div class="coupon-form-wrap">
+						<form action="" method="post" enctype="multipart/form-data">
+							<p><input type="text" name="nama" placeholder="Nama" required></p>
+							<p><input type="text" name="harga" placeholder="Harga" required></p>
+							<div class="input-group mb-3">
+								<label class="input-group-text" for="inputGroupSelect01">Kategori</label>
+									<select class="form-select" name="kategori" id="kategori" required>
+										<option selected>kategori menu</option>
+										<option name="kategori">Espresso Hot</option>
+										<option name="kategori">Espresso Ice</option>
+										<option name="kategori">Frappes</option>
+										<option name="kategori">Non-coffee</option>
+										<option name="kategori">Signature</option>
+									</select>
+							</div>
+							<div class="input-group mb-3">
+								<input type="file" class="form-control" name="gambar" id="gambar" required>
+							</div>
+							<p><input type="submit" name="tambah" value="Upload"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
 
 <!-- copyright -->
 	<div class="copyright">
