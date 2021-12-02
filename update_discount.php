@@ -129,7 +129,6 @@
 									</ul>
 								</li>
 								<li class="current-list-item"><a href="discount_admin.php">Discount</a></li>
-								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
@@ -171,9 +170,10 @@
 								<p><input type="text" name="potongan" required value="<?= $diskon["potongan"]; ?>"></p>
 								<label for="min_order">Minimal Order :</label>
 								<p><input type="text" name="min_order" required value="<?= $diskon["min_order"]; ?>"></p>
-								<p><input type="submit" name="submit" value="Ubah Data"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
+								<p><input type="submit" name="submit" value="Ubah Data"></p>
+                                <a class="cart-btn" href="discount_admin.php" style="text-decoration: none;">Batal</a>
 						</form>
-						</div>
+					</div>
 				</div>
 			</div>
 	</div>
