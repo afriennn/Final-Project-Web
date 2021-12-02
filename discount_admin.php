@@ -102,7 +102,6 @@
 	<!-- products -->
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
-			<a href="upload_discount.php" class="cart-btn">Input Voucher</a>
 			<div class="row">
 				<h2 class="best-seller" style="margin-bottom: 30px">Apply Voucher and Get Your Drinks Now!</h2>
 			</div>
