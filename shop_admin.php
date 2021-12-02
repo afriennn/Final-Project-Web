@@ -104,7 +104,7 @@
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row text-center" style="margin-bottom: 30px;">
-				<h2 class="best-seller">Our Best Seller</h2>
+				<h2 class="best-seller">Our Best Sellers</h2>
 			</div>
 
 			<div class="row product-lists">
@@ -119,7 +119,7 @@
 							<h3><?= $id["nama"]; ?></h3>
 							<p class="product-price">Rp<?= $id["harga"]; ?></p>
 							<a href="update.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn">Update</a>
-							<a href="delete.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a>
+							<a href="delete_bestseller.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a>
 						</form>
 					</div>
 				</div>
