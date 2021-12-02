@@ -158,7 +158,6 @@
 									</ul>
 								</li>
 								<li><a href="discount_admin.php">Discount</a></li>
-								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
