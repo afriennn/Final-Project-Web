@@ -63,7 +63,7 @@
 			echo "
 				<script>
 					alert('Gambar Belum Diinputkan!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -79,7 +79,7 @@
 			echo "
 				<script>
 					alert('Yang Anda Upload Bukan Gambar!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -90,7 +90,7 @@
 			echo "
 				<script>
 					alert('Ukuran Gambar Terlalu Besar!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -168,6 +168,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <!-- header -->
@@ -196,7 +197,7 @@
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
-								<li><a href="add.php">Tambahkan Data</a></li>
+								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>
@@ -226,34 +227,41 @@
 	</div>
 	<!-- end menu-section -->
 
-	<form action="" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="id_menu" value="<?= $menu["id_menu"]; ?>">
-		<input type="hidden" name="gambarLama" value="<?= $menu["gambar"]; ?>">
-		<ul>
-			<li>
-				<label for="nama">Nama : </label>
-				<input type="text" name="nama" required value="<?= $menu["nama"]; ?>">
-			</li>
-			<li>
-				<label for="harga">Harga : </label>
-				<input type="text" name="harga" required value="<?= $menu["harga"]; ?>">
-			</li>
-			<li>
-				<label for="kategori">Kategori : </label>
-				<input type="text" name="kategori" required value="<?= $menu["kategori"]; ?>">
-			</li>
-			<li>
-				<label for="gambar">Gambar :</label><br><br>
-				<img src="menupict/<?= $menu['gambar']; ?>" width="250"><br><br>
-				<input type="file" name="gambar" id="gambar">
-			</li>
-			<li>
-				<button type="submit" name="submit">Ubah Data!</button>
-			</li>
-		</ul>
-	</form>
-
-	<a href="index.php">Batal</a>
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="coupon-section">
+				<h2 style="font-weight: bold; margin-bottom: 30px;">Edit Menu</h2>
+					<div class="coupon-form-wrap">
+					<form action="" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="id_menu" value="<?= $menu["id_menu"]; ?>">
+						<input type="hidden" name="gambarLama" value="<?= $menu["gambar"]; ?>">
+						<label for="nama">Nama : </label>
+							<p><input type="text" name="nama" required value="<?= $menu["nama"]; ?>"></p>
+						<label for="harga">Harga : </label>	
+							<p><input type="text" name="harga" required value="<?= $menu["harga"]; ?>"></p>
+						<div class="input-group mb-3">
+							<label class="input-group-text" for="inputGroupSelect01">Kategori</label>
+								<select class="form-select" name="kategori" id="kategori" required>
+									<option selected><?= $menu["kategori"]; ?></option>
+									<option name="kategori">Espresso Hot</option>
+									<option name="kategori">Espresso Ice</option>
+									<option name="kategori">Frappes</option>
+									<option name="kategori">Non-coffee</option>
+									<option name="kategori">Signature</option>
+								</select>
+						</div>
+							<div class="input-group mb-3">
+								<img src="menupict/<?= $menu['gambar']; ?>" width="250"><br><br>
+							</div>
+							<div class="input-group mb-3">
+								<input type="file" class="form-control" name="gambar" id="gambar" required>
+							</div>
+							<p><input type="submit" name="submit" value="Ubah data"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
 
 <!-- copyright -->
 	<div class="copyright">

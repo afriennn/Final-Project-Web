@@ -6,20 +6,28 @@
     $co_password = $_POST['co_password'];
 
     // cek username sdh ada atau belum 
-        $result = mysqli_query($konek, "SELECT username FROM user WHERE username = $username");
+        $result = mysqli_query($konek, "SELECT username FROM user WHERE username = '$username'");
         if($result){
-            echo "<script>alert('username sudah terdaftar!');</script>";
-            return false;
+            echo "
+            <script>
+                alert('Username sudah terdaftar!');
+                document.location.href = 'signup.php';
+            </script>
+        ";
         }
     // cek apakah konfirmasi password sama
         if($password != $co_password){
-            echo "<script> alert('konfirmasi password tidak sesuai!');</script>";
-            return false;
+            echo "
+            <script>
+                alert('Konfirmasi password tidak sesuai!');
+                document.location.href = 'signup.php';
+            </script>
+        ";
         }
     //enkripsi password
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $epassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = mysqli_query($konek, "INSERT INTO user VALUES ('','$username','$password')");
+    $query = mysqli_query($konek, "INSERT INTO user VALUES ('$username','$epassword')");
 
     if($query){
         header("location:login.php");

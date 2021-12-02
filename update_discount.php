@@ -1,13 +1,72 @@
-<?php
-	include 'koneksi.php';
+<?php 
 	session_start();
-	// semisal belum login, langsung masuk ke index.php
-		if(!isset($_SESSION['username'])){
-			header("Location: index.php");
-		}
 
-		$sql = "SELECT * FROM best_seller";
-		$query = $konek->query($sql);
+	if( !isset($_SESSION['username']) ) {
+		header("Location: index.php");
+		exit;
+	}
+
+	require 'koneksi.php';
+
+	if( isset($_POST["submit"]) ){
+		if( ubah($_POST) > 0){
+			echo "
+				<script>
+					alert('Data Berhasil Diubah!');
+					document.location.href = 'discount_admin.php';
+				</script>
+			";
+		} else {
+			echo "
+				<script>
+					alert('Data Gagal Diubah!');
+				</script>
+			";
+			var_dump($_POST);
+		}
+	}
+
+	// ambil data dari url
+	$discount = $_GET["discount"];
+
+	// fungsi untuk mengambil isi database dan memasukkan ke dalam variable
+	function query($query){
+		global $konek;
+
+		$result = mysqli_query($konek, $query);
+
+	// membuat array rows untuk menampung isi database
+		$rows = []; 
+
+	// memasukkan isi database satu-persatu ke dalam array rows
+		while($row = mysqli_fetch_assoc($result)){
+			$rows[] = $row; 
+		}
+		return $rows;
+	}
+
+		// query data mhs berdasarkan id_menu
+	$diskon = query("SELECT * FROM discount WHERE discount = '$discount'") [0];
+		
+// fungsi ubah
+	function ubah($data){
+		global $konek, $discount;
+
+		$discount = $data["discount"];
+		$potongan = htmlspecialchars($data["potongan"]);
+		$min_order = htmlspecialchars($data["min_order"]);
+
+	// query update menu
+		$query = "UPDATE discount SET
+			 discount = '$discount',
+			 potongan = '$potongan',
+			 min_order = '$min_order'
+			WHERE discount = '$discount'
+		";
+		mysqli_query($konek, $query);
+
+		return mysqli_affected_rows($konek);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +100,10 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-   <!-- header -->
+<!-- header -->
    <div class="top-header-area" id="sticker">
 		<div class="container">
 			<div class="row">
@@ -60,7 +119,7 @@
 						<nav class="main-menu">
 							<ul>
 								<li><a href="homepage_admin.php">Home</a></li>
-								<li class="current-list-item"><a href="shop_admin.php">Menu</a>
+								<li><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
 										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
 										<li><a href="kategori_admin.php?tag=espresso ice">Espresso Ice</a></li>
@@ -69,7 +128,7 @@
 										<li><a href="kategori_admin.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
-								<li><a href="discount_admin.php">Discount</a></li>
+								<li class="current-list-item"><a href="discount_admin.php">Discount</a></li>
 								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
@@ -100,46 +159,36 @@
 	</div>
 	<!-- end menu-section -->
 
-	<!-- products -->
+	<!-- update voucher -->
 	<div class="product-section mt-150 mb-150">
-		<div class="container">
-			<div class="row text-center" style="margin-bottom: 30px;">
-				<h2 class="best-seller">Our Best Seller</h2>
-			</div>
-
-			<div class="row product-lists">
-				<?php $i = 1; ?>
-				<?php foreach ($query as $id) : ?>
-				<div class="col-lg-4 col-md-6 text-center strawberry">
-					<div class="single-product-item">
-						<form action="" method="POST">
-							<div class="product-image">
-								<img src="menupictbestseller/<?= $id["gambar"]; ?>" alt="">
-							</div>
-							<h3><?= $id["nama"]; ?></h3>
-							<p class="product-price">Rp<?= $id["harga"]; ?></p>
-							<a href="update.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn">Update</a>
-							<a href="delete.php?id_menu=<?= $id["id_menu"]; ?>" class="cart-btn" onclick="return confirm('Yakin Untuk Menghapus?');">Delete</a>
+			<div class="container">
+				<div class="coupon-section">
+					<h2 style="font-weight: bold; margin-bottom: 30px;">Edit Voucher</h2>
+						<div class="coupon-form-wrap">
+							<form action="" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="discount" value="<?= $diskon["discount"]; ?>">
+								<label for="potongan">Potongan :</label>
+								<p><input type="text" name="potongan" required value="<?= $diskon["potongan"]; ?>"></p>
+								<label for="min_order">Minimal Order :</label>
+								<p><input type="text" name="min_order" required value="<?= $diskon["min_order"]; ?>"></p>
+								<p><input type="submit" name="submit" value="Ubah Data"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
 						</form>
-					</div>
+						</div>
 				</div>
-				<?php $i++; ?>
-				<?php endforeach; ?>
+			</div>
+	</div>
+
+<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2021 - <a href="homepage_admin.php">Final Project - Web</a>,  All Rights Reserved.</p>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end products -->
+<!-- end copyright -->
 
-	<!-- copyright -->
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 col-md-12">
-						<p>Copyrights &copy; 2021 - <a href="homepage_admin.php">Final Project - Web</a>,  All Rights Reserved.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	<!-- end copyright -->
 </body>
 </html>

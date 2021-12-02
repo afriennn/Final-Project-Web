@@ -71,6 +71,7 @@
 	<link rel="stylesheet" href="assets/css/main.css">
 	<!-- responsive -->
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <!-- header -->
@@ -129,27 +130,25 @@
 	</div>
 	<!-- end menu-section -->
 
-	<form action="" method="post" enctype="multipart/form-data">
-		<ul>
-			<li>
-				<label for="discount">Nama Voucher Discount :</label>
-				<input type="text" name="discount" id="discount" required>
-			</li>
-			<li>
-				<label for="potongan">Potongan :</label>
-				<input type="text" name="potongan" id="potongan" required>
-			</li>
-			<li>
-				<label for="min_order">Minimal Order :</label>
-				<input type="text" name="min_order" id="min_order" required>
-			</li>
-			<li>
-				<button type="submit" name="tambah">Tambahkan!</button>
-			</li>
-		</ul>
-	</form>
-
-	<a href="index.php">Batal</a>
+	<!-- input new voucher -->
+	<div class="product-section mt-150 mb-150">
+			<div class="container">
+				<div class="coupon-section">
+					<h2 style="font-weight: bold; margin-bottom: 30px;">Input Voucher Baru</h2>
+						<div class="coupon-form-wrap">
+							<form action="" method="post" enctype="multipart/form-data">
+								<label for="discount">Nama Voucher Discount :</label>
+								<p><input type="text" name="discount" id="discount" required></p>
+								<label for="potongan">Potongan :</label>
+								<p><input type="text" name="potongan" id="potongan" required></p>
+								<label for="min_order">Minimal Order :</label>
+								<p><input type="text" name="min_order" id="min_order" required></p>
+								<p><input type="submit" name="tambah" value="Upload"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
+						</form>
+						</div>
+				</div>
+			</div>
+	</div>
 
 <!-- copyright -->
 	<div class="copyright">

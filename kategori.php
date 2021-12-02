@@ -10,7 +10,7 @@
     if(isset($_GET['tag'])){
         $tag = $_GET['tag'];
         $sql = "SELECT * FROM menu WHERE kategori='$tag'";
-    }else{
+    } else{
         $sql = "SELECT * FROM menu";
     }
 
@@ -66,13 +66,13 @@
 						<nav class="main-menu">
 							<ul>
 								<li><a href="homepage.php">Home</a></li>
-								<li class="current-list-item"><a href="shop.php">Menu</a>
+								<li class="current-list-item"><a href="shop_admin.php">Menu</a>
 									<ul class="sub-menu">
-										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
-										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
-										<li><a href="kategori.php?tag=frappes">Frappe</a></li>
-										<li><a href="kategori.php?tag=non-coffee">Non-coffee</a></li>
-										<li><a href="kategori.php?tag=signature">Signature</a></li>
+										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
+										<li><a href="kategori_admin.php?tag=espresso ice">Espresso Ice</a></li>
+										<li><a href="kategori_admin.php?tag=frappes">Frappe</a></li>
+										<li><a href="kategori_admin.php?tag=non-coffee">Non-coffee</a></li>
+										<li><a href="kategori_admin.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>

@@ -8,9 +8,9 @@
 	
 	require 'koneksi.php';
 
-	$id_menu = $_GET["id_menu"];
+	$discount = $_GET["discount"];
 
-	mysqli_query($konek, "DELETE FROM best_seller WHERE id_menu = '$id_menu'");
+	mysqli_query($konek, "DELETE FROM discount WHERE discount = '$discount'");
 
 	if( mysqli_affected_rows($konek) > 0 ) {
 		echo "

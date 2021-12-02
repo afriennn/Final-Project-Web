@@ -65,7 +65,6 @@
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
-								<li><a href="add.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
 										<a href="logout.php">Logout</a>

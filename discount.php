@@ -117,6 +117,8 @@
 							<h3><?= $id["discount"]; ?></h3>
 							<h6>Potongan :</h6>
 							<p class="product-price">Rp<?= $id["potongan"]; ?></p>
+							<h6>Minimal Order :</h6>
+							<p class="product-price">Rp<?= $id["min_order"]; ?></p>
 						</form>
 					</div>
 				</div>

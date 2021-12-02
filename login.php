@@ -1,6 +1,5 @@
 <?php
 	include 'koneksi.php';
-	error_reporting(0);
 	session_start();
 	if (isset($_SESSION['username'])) {
 	    header("location: homepage.php");
@@ -8,14 +7,17 @@
 
 	if (isset($_POST['submit'])) {
 		$username = $_POST['username'];
-		$password = md5($_POST['password']);
+		$password = $_POST['password'] ;
 
 		$sql = "SELECT * FROM user WHERE username='$username'";
 		$result = mysqli_query($konek, $sql);
-		if ($result->num_rows > 0) {
+		if ($result->num_rows == 1) {
 			$row = mysqli_fetch_assoc($result);
-			$_SESSION['username'] = $row['username'];
-			header("Location: homepage.php");
+			if(password_verify($password, $row['password'])){
+				$_SESSION['username'] = $row['username'];
+				$_SESSION['password'] = $row['password'];
+				header("Location: homepage.php");
+			}
 		} else {
 			echo "<script>alert('Username atau Password Salah!')</script>";
 		}

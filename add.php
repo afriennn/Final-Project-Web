@@ -44,8 +44,6 @@
 
 // fungsi upload gambar
 	function upload() {
-		global $nama;
-
 		$namaFile = $_FILES['gambar']['name'];
 		$ukuranFile = $_FILES['gambar']['size'];
 		$error = $_FILES['gambar']['error'];
@@ -77,7 +75,6 @@
 			";
 			return false;
 		}
-
 	// jika ukuran terlalu besar
 		if( $ukuranFile > 10000000) {
 			echo "
@@ -90,7 +87,7 @@
 		}
 
 	// generate nama gambar baru
-		$namaFileBaru = $nama;
+		$namaFileBaru = uniqid();
 		$namaFileBaru .= '.';
 		$namaFileBaru .= $ekstensiGambar;
 
