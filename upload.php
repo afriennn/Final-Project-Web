@@ -36,7 +36,7 @@
 			echo "
 				<script>
 					alert('Data Gagal Ditambahkan!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 		}
@@ -54,7 +54,7 @@
 			echo "
 				<script>
 					alert('Gambar Belum Diinputkan!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -70,7 +70,7 @@
 			echo "
 				<script>
 					alert('Yang Anda Upload Bukan Gambar!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -80,7 +80,7 @@
 			echo "
 				<script>
 					alert('Ukuran Gambar Terlalu Besar!');
-					document.location.href = 'add.php';
+					document.location.href = 'upload.php';
 				</script>
 			";
 			return false;
@@ -157,7 +157,7 @@
 										<li><a href="kategori_admin.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
-								<li><a href="discount.php">Discount</a></li>
+								<li><a href="discount_admin.php">Discount</a></li>
 								<li><a href="upload.php">Tambahkan Data</a></li>
 								<li>
 									<div class="header-icons">
@@ -211,7 +211,8 @@
 							<div class="input-group mb-3">
 								<input type="file" class="form-control" name="gambar" id="gambar" required>
 							</div>
-							<p><input type="submit" name="tambah" value="Upload"><a href="shop_admin.php"><input type="submit" value="Batal"></a></p>
+							<p><input type="submit" name="tambah" value="Upload"></p>
+							<a class="cart-btn" href="shop_admin.php" style="text-decoration: none;">Batal</a>
 						</form>
 					</div>
 			</div>
