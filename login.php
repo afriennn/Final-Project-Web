@@ -6,21 +6,21 @@
 	}
 
 	if (isset($_POST['submit'])) {
-		$username = $_POST['username'];
-		$password = $_POST['password'] ;
+		$username = $_POST ['username'];
+	    $password = $_POST ['password'];
 
-		$sql = "SELECT * FROM user WHERE username='$username'";
-		$result = mysqli_query($konek, $sql);
-		if ($result->num_rows == 1) {
-			$row = mysqli_fetch_assoc($result);
-			if(password_verify($password, $row['password'])){
-				$_SESSION['username'] = $row['username'];
-				$_SESSION['password'] = $row['password'];
-				header("Location: homepage.php");
-			}
-		} else {
-			echo "<script>alert('Username atau Password Salah!')</script>";
-		}
+	    $query = mysqli_query($konek, "SELECT * FROM user WHERE username='$username' && password='$password'");
+
+	    $cek = mysqli_num_rows($query);
+
+	    if($cek > 0){
+	        $_SESSION['username'] = $username;
+	        $_SESSION['password'] = $password;
+	        header("location:shop.php");
+	    }
+	    else{
+	        header("location:login.php");
+	    }
 	}
 ?>
 
