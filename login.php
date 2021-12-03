@@ -9,17 +9,17 @@
 		$username = $_POST ['username'];
 	    $password = $_POST ['password'];
 
-	    $query = mysqli_query($konek, "SELECT * FROM user WHERE username='$username' && password='$password'");
+	    $query = mysqli_query($konek, "SELECT * FROM user WHERE username='$username' AND password='$password'");
 
 	    $cek = mysqli_num_rows($query);
 
 	    if($cek > 0){
 	        $_SESSION['username'] = $username;
 	        $_SESSION['password'] = $password;
-	        header("location:shop.php");
+	        header("location:homepage.php");
 	    }
 	    else{
-	        header("location:login.php");
+	        echo "<script>alert('Username atau Password Salah!')</script>";
 	    }
 	}
 ?>
