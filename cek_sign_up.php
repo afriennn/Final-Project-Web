@@ -24,10 +24,8 @@
             </script>
         ";
         }
-    //enkripsi password
-    $epassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = mysqli_query($konek, "INSERT INTO user VALUES ('','$username','$epassword')");
+    $query = mysqli_query($konek, "INSERT INTO user VALUES ('','$username','$password')");
 
     if($query){
         header("location:login.php");
