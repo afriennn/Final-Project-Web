@@ -66,13 +66,13 @@
 						<nav class="main-menu">
 							<ul>
 								<li><a href="homepage.php">Home</a></li>
-								<li class="current-list-item"><a href="shop_admin.php">Menu</a>
+								<li class="current-list-item"><a href="shop.php">Menu</a>
 									<ul class="sub-menu">
-										<li><a href="kategori_admin.php?tag=espresso hot">Espresso Hot</a></li>
-										<li><a href="kategori_admin.php?tag=espresso ice">Espresso Ice</a></li>
-										<li><a href="kategori_admin.php?tag=frappes">Frappe</a></li>
-										<li><a href="kategori_admin.php?tag=non-coffee">Non-coffee</a></li>
-										<li><a href="kategori_admin.php?tag=signature">Signature</a></li>
+										<li><a href="kategori.php?tag=espresso hot">Espresso Hot</a></li>
+										<li><a href="kategori.php?tag=espresso ice">Espresso Ice</a></li>
+										<li><a href="kategori.php?tag=frappes">Frappe</a></li>
+										<li><a href="kategori.php?tag=non-coffee">Non-coffee</a></li>
+										<li><a href="kategori.php?tag=signature">Signature</a></li>
 									</ul>
 								</li>
 								<li><a href="discount.php">Discount</a></li>
@@ -119,7 +119,7 @@
 						</div>
 						<h3><?= $id["nama"]; ?></h3>
 						<p class="product-price">Rp<?= $id["harga"]; ?></p>
-						<a href="cart.php" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="add_to_cart.php?id=<?= $id["id_menu"]; ?>" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
 				<?php $i++; ?>
