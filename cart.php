@@ -82,7 +82,7 @@
 		</div>
 	</div>
     <!-- end header -->
-	
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -115,30 +115,29 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/Espresso Hot/Espresso.jpg" alt=""></td>
-									<td class="product-name">Espresso</td>
-									<td class="product-price">Rp13.000</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/Signature/Manhattan-Special.jpg" alt=""></td>
-									<td class="product-name">Manhattan Special</td>
-									<td class="product-price">Rp30.000</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
-								<tr class="table-body-row">
-									<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-									<td class="product-image"><img src="assets/img/products/Frappe/Coffee.jpg" alt=""></td>
-									<td class="product-name">Coffee Frappe</td>
-									<td class="product-price">Rp25.000</td>
-									<td class="product-quantity"><input type="number" placeholder="0"></td>
-									<td class="product-total">1</td>
-								</tr>
+								<?php
+								$username = $_SESSION["username"];
+								$idUser = $konek->query("SELECT `id` FROM `user` WHERE `user`.`username` = '$username'") -> fetch_assoc()['id'];
+								$dataCart = $konek->query("SELECT * FROM `cart` WHERE `cart`.`id` = '$idUser'");
+									if ($dataCart -> num_rows > 0) {
+										while($value = $dataCart->fetch_assoc()){
+											$idMenu = $value['id_menu'];
+											$menu = $konek->query("SELECT * FROM `menu` WHERE `menu`.`id_menu` = '$idMenu'")->fetch_assoc();
+											?>
+											<tr class="table-body-row">
+												<td class="product-remove"><a href="delete_cart.php?id=<?= $id["id_cart"]; ?>"><i class="far fa-window-close"></i></a></td>
+												<td class="product-image"><img src="menupict/<?php echo $menu["gambar"]; ?>" alt=""></td>
+												<td class="product-name"><?php echo $menu["nama"] ?></td>
+												<td class="product-price">Rp<?php echo $menu["harga"] ?></td>
+												<td class="product-quantity"><input type="number" placeholder="0"></td><?php //ini nanti pas lu dah nambah quantity di cart ?>
+												<td class="product-total"><?php //echo $value[NamaVarBnykBarang]; ?>1</td><?php //ini nanti pas lu dah nambah quantity di cart ?>
+											</tr>
+											<?php
+										}
+									}
+
+								 ?>
+
 							</tbody>
 						</table>
 					</div>
